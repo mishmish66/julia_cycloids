@@ -1,5 +1,5 @@
 using GLMakie
-include("angled_circle.jl")
+include("../curves/pcircle.jl")
 include("utils.jl")
 
 θ = Observable(0.0)
