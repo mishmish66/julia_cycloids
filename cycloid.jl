@@ -1,5 +1,5 @@
 include("utils.jl")
-include("circle.jl")
+include("pcircle.jl")
 
 # {T_l1<:Number,T_l2<:Number,T_k<:Number,T_θ<:Number,T_pos<:Union{Symbolics.Arr{Num,},Vector{T} where T<:Number}}
 mutable struct Cycloid
@@ -11,9 +11,19 @@ mutable struct Cycloid
     inset::T_inset where T_inset<:Number
 end
 
-function get_cycloid_edge(cycloid::Cycloid, t::T) where T <: Number
-    inner_element = Circle(cycloid.pos, cycloid.l1, cycloid.θ)
-    outer_element = Circle(inner_element(t), cycloid.l2, t + inner_element.θ)
+function _get_base_cycloid_edge(cycloid::Cycloid, t::T) where T <: Number
+    inner_element = pcircle(cycloid.pos, cycloid.l1, cycloid.θ)
+    outer_element = pcircle(inner_element(t), cycloid.l2, t + inner_element.θ)
 
     return outer_element(t * cycloid.k)
+end
+
+function (cycloid::Cycloid)(t::T) where T <: Number
+    edge = _get_base_cycloid_edge(cycloid, t)
+
+    norm = cycloid_normal(cycloid, t)
+    center_edge = edge - cycloid.pos
+    inward = center_edge' * norm < 0.0
+
+    return edge + norm .* (cycloid.inset) .* (inward ? 1 : -1)
 end
