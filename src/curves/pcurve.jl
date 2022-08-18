@@ -1,2 +1,2 @@
 # Parametric Curve Type
-abstract type pcurve end
+abstract type PCurve end
