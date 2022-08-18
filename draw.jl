@@ -1,6 +1,5 @@
 using GLMakie
-
-include("cycloid_funcs.jl")
+include("cycloid.jl")
 
 function get_cycloid_end(cycloid::Cycloid)
     return min(2π / (cycloid.k + 1), 128π)
@@ -19,4 +18,11 @@ end
 function vecarr_lines!(vecarr::T_vecarr where T_vecarr <: Observable)
     points = @lift(reduce(hcat, $vecarr))
     lines!(@lift($points[1, :]), @lift($points[2, :]))
+end
+
+function draw_circle(circle::AngledCircle, steps::Int=1024)
+    step_arr = LinRange(0.0, 2π, steps)
+    points = reduce(hcat, circle.(step_arr))
+
+    lines!(points[1, :], [2, :])
 end
