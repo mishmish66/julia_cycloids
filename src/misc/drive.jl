@@ -10,10 +10,10 @@ struct Drive
 end
 
 function draw_pins(drive::Drive)
-    pinwheel = Circle(drive.cycloid.pos, drive.pinwheel_r)
+    pinwheel = AngledCircle(drive.cycloid.pos, drive.pinwheel_r)
     pin_positions = pinwheel.(LinRange(0.0, 2π, pin_count))
 
-    draw_pin = pin_pos -> draw_circle(Circle(pin_pos, drive.pin_r))
+    draw_pin = pin_pos -> draw_circle(AngledCircle(pin_pos, drive.pin_r))
 
     draw_circle.(pin_positions)
 end

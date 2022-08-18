@@ -23,3 +23,4 @@ end
 function isect_segseg(l1::Line, l2::Line)
     return isect_segline(l1, l2) && isect_segline(l2, l1)
 end
+
