@@ -1,6 +1,7 @@
-include("utils.jl")
+include("../utils.jl")
+include("pcurve.jl")
 
-struct Line
+struct Line <: PCurve
     p1::Vector{T_p1_invec} where T_p1_invec <: Number
     p2::Vector{T_p2_invec} where T_p2_invec <: Number
 end
@@ -24,3 +25,6 @@ function isect_segseg(l1::Line, l2::Line)
     return isect_segline(l1, l2) && isect_segline(l2, l1)
 end
 
+function (line::Line)(t::Number)
+    return (1-t)*line.p1 + t*line.p2
+end
