@@ -14,7 +14,7 @@ inside = GridLayout(top_left[1, 1])
 stepval = 8π/(2^14)
 
 step_slider = Slider(inside[1, 1], range = -stepval*20:stepval/4:stepval*20, startvalue=stepval)
-step = step_slider.value
+anim_step = step_slider.value
 
 k_sldr = Slider(inside[2, 1], range = -10:1:10, startvalue = 5)
 k = k_sldr.value
@@ -105,6 +105,7 @@ lines!(l1, color=:salmon)
 lines!(l2, color=:violet)
 
 top_left = GridLayout(f[1, 1])
+
 # Animate! ========================================================================================
 
 while true
@@ -117,7 +118,7 @@ while true
     push!(traj, l2[](1))
     points_update()
     sleep(0.001)
-    θ[] = θ[] += step[]
+    θ[] = θ[] += anim_step[]
 end
 
 println("gutter")

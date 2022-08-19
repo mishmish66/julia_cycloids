@@ -41,15 +41,6 @@ dr⃗dt = simplify(ddt(r⃗))
 const cycloid_symbolic_dr⃗dt = dr⃗dt
 
 macro cycloid_d()
-    # vars = @variables (l1, l2, k, θ, pos[1:2], inset, t_sym)
-	# cyc_vars = (l1, l2, k, θ, pos, inset)
-    # sym_cyc = Cycloid(cyc_vars...)
-
-    # r⃗ = _get_base_cycloid_edge(sym_cyc, t_sym)
-    # ddt(x::T) where T = simplify(Symbolics.jacobian(x, [t_sym])[:])
-    # dr⃗dt = ddt(r⃗)
-
-    # return build_function(dr⃗dt, vars...)[1]
     return build_function(cycloid_symbolic_dr⃗dt, symbolic_cycloid_vars...)[1]
 end
 
@@ -77,21 +68,6 @@ const cycloid_symbolic_ĉ = ĉ
 # end
 
 macro cycloid_normal()
-    # vars = @variables (l1, l2, k, θ, pos[1:2], t_sym)
-	# cyc_vars = (l1, l2, k, θ, pos)
-    # sym_cyc = Cycloid(cyc_vars..., 0.0)
-
-    # r⃗ = _get_base_cycloid_edge(sym_cyc, t_sym)
-    # ddt(x::T) where T = simplify(Symbolics.jacobian(x, [t_sym])[:])
-    # dr⃗dt = ddt(r⃗)
-    # mag_dr⃗dt = sqrt(dr⃗dt' * dr⃗dt)
-    # t̂ = dr⃗dt ./ mag_dr⃗dt
-
-    # c = ddt(t̂)
-    # mag_c = sqrt(c' * c)
-    # ĉ = simplify(c ./ mag_c)
-	
-    # return build_function(ĉ, vars...)[1]
     return build_function(cycloid_symbolic_ĉ, symbolic_cycloid_vars...)[1]
 end
 
