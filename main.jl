@@ -16,11 +16,6 @@ limits!(lims...)
 
 draw_cycloid(cyc)
 
-function do_thing(t)
-    norm = cycloid_normal(cyc[], t) .* 0.1
-    return cyc[](t) + norm
-end
-
 θ_it = LinRange(0, 2π, 512)
 # record(f, "what_even.mp4", θ_it, framerate = 60) do θ_i
 #     θ[] = θ_i
