@@ -10,7 +10,7 @@ const NorD = Union{Num,Float}
 # convert(::Type{NorD}, Num) = NorD(Num)
 
 function rotmat(θ::T) where T <: Number
-    return [cos(θ) sin(θ); sin(θ) -cos(θ)]
+    return [cos(θ) -sin(θ); sin(θ) cos(θ)]
 end
 
 function cross(v1::T, v2::T) where T <: Vector{T_invec} where T_invec <: Number
