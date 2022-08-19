@@ -14,7 +14,7 @@ ax = Axis(f[1, 1])
 
 limits!(lims...)
 
-draw_cycloid(cyc)
+lines!(cyc)
 
 θ_it = LinRange(0, 2π, 512)
 # record(f, "what_even.mp4", θ_it, framerate = 60) do θ_i
