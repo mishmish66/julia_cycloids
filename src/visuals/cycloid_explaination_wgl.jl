@@ -1,10 +1,13 @@
+using JSServe
+Page(exportable=false, offline=false)
+
 include("../utils.jl")
 include("../draw.jl")
-using GLMakie
+using WGLMakie
 
 # General Stuff Declaration =======================================================================
 
-set_theme!(theme_black())
+set_theme!(theme_black(), resolution=(1920, 1920))
 f = Figure(resolution=(1920, 1920))
 top_left = GridLayout(f[1, 1])
 inside = GridLayout(top_left[1, 1])
@@ -107,8 +110,6 @@ lines!(l2, color=:violet)
 top_left = GridLayout(f[1, 1])
 
 # Animate! ========================================================================================
-
-println("starting")
 
 while true
     if θ[] >= 8π
